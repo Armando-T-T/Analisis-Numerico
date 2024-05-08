@@ -12,7 +12,7 @@ void Resolver_Newton(Matriz& matriz, Vector& vector);
 double Solucion(Vector& vector, Vector& vectorX);
 void imprimirMatriz(Matriz& matriz);
 void imprimirVector(Vector& vector);
-
+void imprimirPolinomio(Vector& vector, Vector& vectorX);
 
 int main() {
     int tamano;
@@ -51,6 +51,9 @@ int main() {
 
     cout << "Vector X:" << endl;
     imprimirVector(vectorX);
+
+    cout << "Polinomio de Interpolacion de Newton (f(x)):" << endl;
+    imprimirPolinomio(vector, vectorX);
 
     double solucion = Solucion(vector, vectorX);
 
@@ -100,4 +103,18 @@ void imprimirVector(Vector& vector) {
     for (int i = 0; i < n; i++) {
         cout << setw(10) << vector[i] << endl;
     }
+}
+
+void imprimirPolinomio(Vector& vector, Vector& vectorX) {
+    int n = vector.size();
+    cout << vector[0]; // Imprimir el primer término
+
+    for (int i = 1; i < n; i++) {
+        cout << " + (" << vector[i] << ")";
+        for (int j = 0; j < i; j++) {
+            cout << "*(x - " << vectorX[j] << ")";
+        }
+    }
+
+    cout << endl;
 }
